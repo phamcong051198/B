@@ -42,4 +42,4 @@ appImage:
 npmRebuild: false
 publish:
   provider: generic
-  url: http://localhost:8080/releases/v${version}/ # Đường dẫn đến thư mục phiên bản trên server
+  url: http://localhost:8080/ # Đường dẫn đến thư mục phiên bản trên server

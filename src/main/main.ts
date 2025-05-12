@@ -68,50 +68,50 @@ export function createMainWindow() {
   return mainWindow
 }
 
-function setupAutoUpdater() {
-  if (is.dev) {
-    autoUpdater.forceDevUpdateConfig = true
-    autoUpdater.setFeedURL({
-      provider: 'generic',
-      url: 'http://localhost:8080/'
-    })
-  }
+// function setupAutoUpdater() {
+//   if (is.dev) {
+//     autoUpdater.forceDevUpdateConfig = true
+//     autoUpdater.setFeedURL({
+//       provider: 'generic',
+//       url: 'http://localhost:8080/'
+//     })
+//   }
 
-  // 🔁 Lưu ID của setInterval
-  const intervalId = setInterval(
-    () => {
-      autoUpdater.checkForUpdates().catch((err) => {
-        console.error('AutoUpdater periodic check error:', err)
-      })
-    },
-    1000 * 60 * 1
-  ) // Mỗi 1 phút
+//   // 🔁 Lưu ID của setInterval
+//   const intervalId = setInterval(
+//     () => {
+//       autoUpdater.checkForUpdates().catch((err) => {
+//         console.error('AutoUpdater periodic check error:', err)
+//       })
+//     },
+//     1000 * 60 * 1
+//   ) // Mỗi 1 phút
 
-  autoUpdater.on('checking-for-update', () => {
-    console.log('🔄 Checking for update...')
-  })
+//   autoUpdater.on('checking-for-update', () => {
+//     console.log('🔄 Checking for update...')
+//   })
 
-  autoUpdater.on('update-available', () => {
-    console.log('⬇️ Update available, downloading...')
-    clearInterval(intervalId) // 🔥 Clear interval khi có update
-    autoUpdater.downloadUpdate()
-  })
+//   autoUpdater.on('update-available', () => {
+//     console.log('⬇️ Update available, downloading...')
+//     clearInterval(intervalId) // 🔥 Clear interval khi có update
+//     autoUpdater.downloadUpdate()
+//   })
 
-  autoUpdater.on('update-not-available', () => {
-    console.log('✅ No update available.')
-  })
+//   autoUpdater.on('update-not-available', () => {
+//     console.log('✅ No update available.')
+//   })
 
-  autoUpdater.on('error', (err) => {
-    console.error('❌ AutoUpdater error:', err)
-  })
+//   autoUpdater.on('error', (err) => {
+//     console.error('❌ AutoUpdater error:', err)
+//   })
 
-  autoUpdater.on('download-progress', (progress) => {
-    console.log(`📥 Downloading... ${Math.round(progress.percent)}%`)
-  })
+//   autoUpdater.on('download-progress', (progress) => {
+//     console.log(`📥 Downloading... ${Math.round(progress.percent)}%`)
+//   })
 
-  autoUpdater.on('update-downloaded', () => {
-    console.log('✅ Update downloaded. Will install on quit.')
-    BrowserWindow.getAllWindows()[0].webContents.send('update-available')
-    // autoUpdater.quitAndInstall() // tuỳ chọn
-  })
-}
+//   autoUpdater.on('update-downloaded', () => {
+//     console.log('✅ Update downloaded. Will install on quit.')
+//     BrowserWindow.getAllWindows()[0].webContents.send('update-available')
+//     // autoUpdater.quitAndInstall() // tuỳ chọn
+//   })
+// }
