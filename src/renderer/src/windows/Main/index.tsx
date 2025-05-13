@@ -4,6 +4,10 @@ export default function Main() {
   const [updateMessage, setUpdateMessage] = useState('')
 
   useEffect(() => {
+    window.electron.ipcRenderer.on('delete', () => localStorage.setItem('isLoggedIn', 'false'))
+  }, [])
+
+  useEffect(() => {
     window.electronAPI?.onUpdateAvailable(() => {
       setUpdateMessage('Có 1 bản update mới. Đăng nhập lại để cập nhật ứng dụng')
     })

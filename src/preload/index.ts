@@ -8,7 +8,7 @@ if (!process.contextIsolated) {
 try {
   contextBridge.exposeInMainWorld('electron', electronAPI)
   contextBridge.exposeInMainWorld('electronAPI', {
-    onUpdateAvailable: (callback) => ipcRenderer.on('update-available', callback)
+    onUpdateAvailable: (callback) => ipcRenderer.on('update-available-show', callback)
   })
 } catch (error) {
   console.error('Failed to expose electron API in the main world:', error)
